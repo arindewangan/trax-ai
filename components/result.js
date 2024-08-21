@@ -38,9 +38,11 @@ const Result = ({ itinerary }) => {
           </ul>
         </div>
       </div>
-      <div className='flex items-center justify-center text-center mt-4 mb-2'>
+      <div className='flex items-center justify-center text-center mt-4 mb-2 space-x-3'>
 
       <button onClick={() => window.print()} className="printbutton bg-yellow-300 text-yellow-900 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-yellow-300 duration-300">Print Itinerary</button>
+      <button onClick={() => window.location.reload()} className="printbutton bg-gray-300 text-gray-900 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-gray-300 duration-300">New Itinerary</button>
+
       </div>
       </div>
     </div>

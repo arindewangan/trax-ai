@@ -33,9 +33,11 @@ export default function Home() {
           prompt,
         });
 
+        console.log('Raw response:', itineraryResponse);
+
         if (itineraryResponse.status === 200) {
-          const jsonString = itineraryResponse.data.replace(/```json|```/g, '');
-          const idata = JSON.parse(jsonString);
+          const jsonString = await itineraryResponse.data.replace(/```json|```/g, '');
+          const idata = await JSON.parse(jsonString);
           setItinerary(idata);
         } else {
           setError('Failed to generate itinerary');
