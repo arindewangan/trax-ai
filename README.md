@@ -1,40 +1,119 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trax AI
 
-## Getting Started
+Trax AI is a Next.js application that allows users to select a location and date range to fetch weather data and generate a travel itinerary based on the weather conditions. The application uses the OpenWeatherMap API for weather data and the Gemini API for generating travel itineraries.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Location and Date Range Selection:** Users can choose a location and specify a start and end date.
+- **Weather Forecast Retrieval:** Fetches 3-hour interval weather data for the selected date range from the OpenWeatherMap API.
+- **Itinerary Generation:** Sends weather data and location to the Gemini API to create a detailed travel itinerary.
+- **JSON Data Rendering:** Displays the generated itinerary and weather data in a structured JSON format.
+
+## Setup
+
+### Prerequisites
+
+- Node.js and npm/yarn installed.
+- API keys for OpenWeatherMap and Gemini.
+
+### Installation
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/your-username/trax-ai.git
+   cd trax-ai
+   ```
+
+2. **Install Dependencies:**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Environment Variables:**
+
+   Create a `.env.local` file in the root directory and add your API keys:
+
+   ```env
+   WEATHER_API_KEY=your_openweathermap_api_key
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
+
+4. **Run the Application:**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+   The application will be available at `http://localhost:3000`.
+
+## API Endpoints
+
+### `/api/getWeatherReport`
+
+**Method:** `POST`
+
+**Description:** Fetches weather data for the specified location and date range.
+
+**Request Body:**
+
+```json
+{
+  "location": "Goa",
+  "startDate": "2024-08-21",
+  "endDate": "2024-08-30"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Response:**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```json
+[
+  { "date": "2024-08-21", "weather": "Rain" },
+  { "date": "2024-08-22", "weather": "Clouds" },
+  ...
+]
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### `/api/getItinerary`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Method:** `POST`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Description:** Generates a travel itinerary based on location and weather data.
 
-## Learn More
+**Request Body:**
 
-To learn more about Next.js, take a look at the following resources:
+```json
+{
+  "location": "Goa",
+  "weatherData": [
+    { "date": "2024-08-21", "weather": "Rain" },
+    { "date": "2024-08-22", "weather": "Clouds" },
+    ...
+  ]
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Response:** JSON formatted data with the travel itinerary.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. **Select Location and Dates:** Use the application interface to enter the desired location and date range.
+2. **Submit the Form:** Click the submit button to fetch weather data and generate the itinerary.
+3. **View Results:** The results will be displayed in JSON format, showing both weather data and the generated itinerary.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Arin Dewangan**
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/your-username/trax-ai).
+
+
+---
