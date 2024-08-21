@@ -1,0 +1,25 @@
+{
+  "name": "out",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Arin Dewangan",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.17.0",
+    "axios": "^1.7.4",
+    "date-fns": "^3.6.0",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-datepicker": "^7.3.0",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}

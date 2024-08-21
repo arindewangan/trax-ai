@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media print {
+    .printbutton {
+      display: none; /* Hide button when printing */
+    }
+}
