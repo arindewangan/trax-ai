@@ -10,10 +10,12 @@ export default function Home() {
   const [endDate, setEndDate] = useState(new Date());
   const [itinerary, setItinerary] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // New loading state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null); // Clear previous errors
+    setLoading(true); // Set loading to true when the form is submitted
 
     try {
       const formattedStartDate = startDate.toISOString();
@@ -48,6 +50,8 @@ export default function Home() {
     } catch (error) {
       console.error('Error during submit:', error);
       setError('An error occurred while generating itinerary');
+    } finally {
+      setLoading(false); // Set loading to false after data fetching
     }
   };
 
@@ -115,7 +119,14 @@ export default function Home() {
                 type="submit"
                 className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
               >
-                Generate Itinerary
+                {loading ? (
+                  <div className="flex justify-center items-center">
+                    <div className="spinner-border animate-spin inline-block w-6 h-6 border-4 rounded-full text-white"></div>
+                    <span className="ml-2">Generating...</span>
+                  </div>
+                ) : (
+                  "Generate Itinerary"
+                )}
               </button>
             </form>
 
@@ -125,7 +136,7 @@ export default function Home() {
 
           </div>
         </div>
-        ):(
+      ) : (
         <div>
           <Result itinerary={itinerary} />
         </div>
